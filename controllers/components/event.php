@@ -1,8 +1,8 @@
 <?php
 /**
- * EventHook Component
+ * Event Component
  *
- * Event hook component for tying events into the CMS.
+ * Event component for tying events into the CMS.
  *
  * @category Component
  * @package  Croogo
@@ -11,7 +11,7 @@
  * @license  http://www.opensource.org/licenses/mit-license.php The MIT License
  * @link     http://www.tigerclawtech.com/portfolio/croogo-event-plugin
  */
-class EventHookComponent extends Object {
+class EventComponent extends Object {
 /**
  * Called after the Controller::beforeFilter() and before the controller action
  *
@@ -21,6 +21,11 @@ class EventHookComponent extends Object {
     public function initialize(&$controller, $settings = array()){
         
         //hook in the has many model
+    	
+    	$controller->Node->bindModel(
+        	array('hasOne'=>array('Event')),
+        	false
+       	);
         
     }
 /**
