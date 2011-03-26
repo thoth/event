@@ -58,7 +58,7 @@ class EventController extends EventAppController {
 					'title'=>$event['Node']['title'],
 					'start'=>$event['Event']['start_date'],
 //					'end'=>date('Y-m-d', strtotime($event['Page']['end_date'])),
-					'url'=>'/'.$event['Node']['slug']
+					'url'=>'/'.$event['Node']['type'].'/'.$event['Node']['slug']
 				);
 		}    	
 		$this->autoLayout = false;
