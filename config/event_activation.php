@@ -108,7 +108,7 @@ class EventActivation{
             $controller->Link->delete($link['Link']['id']);
         }
 
-    }/**
+    }
 
 }
 ?>
