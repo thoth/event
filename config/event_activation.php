@@ -66,7 +66,8 @@ class EventActivation{
 		        ));
 			break;
         }
-    }
+		$controller->Setting->write('Event.version', '1.0', array('editable' => 0, 'title' => 'Version'));
+     }
 /**
  * onDeactivate will be called if this returns true
  *
