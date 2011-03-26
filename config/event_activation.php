@@ -38,7 +38,7 @@ class EventActivation{
         $controller->Croogo->addPluginRoutes('event');
 
 		$version  = $controller->Setting->read('Event.version');
-		swtich($version){
+		switch($version){
 			default:
 		        // Add a table to the DB
 		        App::import('Core', 'File');
