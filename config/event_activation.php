@@ -31,7 +31,7 @@ class EventActivation{
         $controller->Croogo->addAco('Event/index', array('registered', 'public')); // ExampleController::index()
         $controller->Croogo->addAco('Event/calendar', array('registered', 'public')); // ExampleController::index()
         
-		$version  = $controller->Setting->read('Event.version');
+		$version  = Configure::read('Event.version');
 		switch($version){
 			default:
 		        // Add a table to the DB
