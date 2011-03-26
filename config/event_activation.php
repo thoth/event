@@ -31,12 +31,6 @@ class EventActivation{
         $controller->Croogo->addAco('Event/index', array('registered', 'public')); // ExampleController::index()
         $controller->Croogo->addAco('Event/calendar', array('registered', 'public')); // ExampleController::index()
         
-        // Bootstrap: app/plugins/example/config/bootstrap.php will be loaded in app/config/bootstrap.php
-        $controller->Croogo->addPluginBootstrap('event');
-
-        // Routes: app/plugins/example/config/routes.php will be loaded in app/config/routes.php
-        $controller->Croogo->addPluginRoutes('event');
-
 		$version  = $controller->Setting->read('Event.version');
 		switch($version){
 			default:
