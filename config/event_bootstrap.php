@@ -16,7 +16,7 @@
  *
  * This plugin's Example component will be loaded in ALL controllers.
  */
-//    Croogo::hookComponent('*', 'Example.Example');
+    Croogo::hookComponent('Nodes', 'Event.Event');
 /**
  * Helper
  *
