@@ -44,6 +44,6 @@
  *
  * Useful for adding form extra form fields if necessary.
  */
-    Croogo::hookAdminTab('Nodes/admin_add', 'Event Details (optional)', 'event.admin_tab_node_add');
-    Croogo::hookAdminTab('Nodes/admin_edit', 'Event Details (optional)', 'event.admin_tab_node');
+    Croogo::hookAdminTab('Nodes/admin_add', 'Event', 'event.admin_tab_node_add');
+    Croogo::hookAdminTab('Nodes/admin_edit', 'Event', 'event.admin_tab_node');
 ?>
