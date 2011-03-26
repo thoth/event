@@ -1,0 +1,27 @@
+# Croogo: Event Plugin
+
+**Event** is a free, open source, resume builder that sits on top of the Croogo content management system for PHP, released under [MIT License].
+
+It is powered by [CakePHP](http://cakephp.org) MVC framework.
+
+## Requirements
+  * Apache with mod_rewrite
+  * PHP 5.2 or higher
+  * MySQL 4.1 or higher
+
+## Installation
+
+#### Web based installer
+
+  * Upload the .zip file through Croogo's extension manager.
+
+#### Manual installation
+
+  * Extract the archive. Upload the content to your Croogo installation in the ./app/plugins/event directory.
+  * visit Croogo's extension system to "activate" the plugin.
+
+## Links
+
+  * **Official website**: [http://www.tigerclawtech.com/portfolio/croogo-event-plugin](http://www.tigerclawtech.com/portfolio/croogo-event-plugin)
+  * **Downloads**: [https://github.com/thoth/event/downloads](https://github.com/thoth/event/downloads)
+  
