@@ -38,10 +38,6 @@ class EventController extends EventAppController {
         	array('belongsTo'=>array('Node')),
         	false
        	);
-    	$this->Node->bindModel(
-        	array('hasMany'=>array('Event')),
-        	false
-       	);
        	
     }
     
