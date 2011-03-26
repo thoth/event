@@ -1,5 +1,5 @@
 <?php 
-	$javascript->link('/event/js/jquery.datetimepicker', false);
+	$html->script(array('/event/js/jquery.datetimepicker'), array('inline'=>false));
 
     echo $form->input('Event.node_id', array('type'=>'hidden', 'value'=>$html->value('Node.id')));
     echo $form->input('Event.start_date', array('class'=>'datetimepicker'));

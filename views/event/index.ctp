@@ -1,6 +1,6 @@
 <?php 
 	$html->css('/event/css/fullcalendar', null, array('inline'=>false));
-	$javascript->link('/event/js/fullcalendar.min', false);
+	$html->script(array('/event/js/fullcalendar.min'), array('inline'=>false));
 ?>
 <div class="example">
     <h2>Events</h2>
