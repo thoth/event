@@ -22,7 +22,7 @@
  *
  * This plugin's Example helper will be loaded via NodesController.
  */
-//    Croogo::hookHelper('Nodes', 'Example.Example');
+    Croogo::hookHelper('Nodes', 'Event.Event');
 /**
  * Admin menu (navigation)
  *
