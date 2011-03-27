@@ -75,7 +75,7 @@ class EventBehavior extends ModelBehavior {
                 // bind Node model
                 $this->Event->bindModel(array(
                     'belongsTo' => array('Node')
-                    )
+                    
                 ));
                 // unbind unnecessary models from Node model
                 $this->Event->Node->unbindModel(array(
