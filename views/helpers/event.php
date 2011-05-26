@@ -78,12 +78,13 @@ class EventHelper extends AppHelper {
  * @return string
  */
     public function beforeNodeBody() {
-		debug($this);     
-    
-        return '<div class="event-data">
-        	From:  <br />
-        	To: 
-        </div>';
+		//debug($this->Layout->node['Event']);     
+    	if(count($this->Layout->node['Event']) > 0 && $this->Layout->node['Event']['start_date'] != '0000-00-00 00:00:00' && $this->Layout->node['Event']['end_date'] != '0000-00-00 00:00:00'){
+	        return '<div class="event-data">
+	        	From: '.$this->Layout->node['Event']['start_date'].'<br />
+	        	To: '.$this->Layout->node['Event']['end_date'].'
+	        </div>';
+        }
     }
 /**
  * Called after LayoutHelper::nodeBody()

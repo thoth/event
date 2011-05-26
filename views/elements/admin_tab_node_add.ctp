@@ -8,8 +8,15 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('.datetimepicker').datetimepicker({
-			dateFormat: 'yy-mm-dd'
+		$('#EventStartDate').datetimepicker({
+			dateFormat: 'yy-mm-dd',
+			timeFormat: 'hh:mm'
+			
+		});
+		$('#EventEndDate').datetimepicker({
+			dateFormat: 'yy-mm-dd',
+			timeFormat: 'hh:mm'
+			
 		});
 	
 	});
