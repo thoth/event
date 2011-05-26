@@ -1,5 +1,6 @@
 <?php
 /**
+<<<<<<< HEAD
  * Event Behavior
  *
  * PHP version 5
@@ -11,6 +12,14 @@
  * @license  http://www.opensource.org/licenses/mit-license.php The MIT License
  * @link     http://www.tigerclawtech.com/portfolio/croogo-event-plugin
  */
+=======
+* Nodeattachment behavior
+*
+* @author Juraj Jancuska <jjancuska@gmail.com>
+* @copyright (c) 2010 Juraj Jancuska
+* @license MIT License - http://www.opensource.org/licenses/mit-license.php
+*/
+>>>>>>> ffd67d775b053d1a547b1d04355653ed59dca101
 class EventBehavior extends ModelBehavior {
 
         /**
@@ -86,6 +95,7 @@ class EventBehavior extends ModelBehavior {
                 $this->Event->Node->unbindModel(array(
                     'belongsTo' => array('User'),
                     'hasMany' => array('Comment', 'Meta'),
+<<<<<<< HEAD
                     'hasAndBelongsToMany' => array('Taxonomy')
                 ));
                 
@@ -100,6 +110,17 @@ class EventBehavior extends ModelBehavior {
                 	return null;
                 }
                 
+=======
+                    'hasAndBelongsToMany' => array('Taxanomy')
+                ));
+                
+                $this->Event->Node->recursive = 0;
+                $events = $this->Event->find('all', array(
+                    'conditions' => array('Event.node_id' => $node_id)
+                ));
+                
+                return $events;
+>>>>>>> ffd67d775b053d1a547b1d04355653ed59dca101
 
         }
 
