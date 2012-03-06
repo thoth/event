@@ -28,11 +28,23 @@ class EventBehavior extends ModelBehavior {
          * @return void
          */
         public function setup(&$model, $config = array()) {
-                if (is_string($config)) {
-                        $config = array($config);
-                }
+            if (is_string($config)) {
+                    $config = array($config);
+            }
 
-                $this->settings[$model->alias] = $config;
+            $this->settings[$model->alias] = $config;
+        
+	    	$model->bindModel(
+	        	array(
+	        		'hasOne'=>array(
+	        			'Event'=>array(
+							'className'     => 'Event',
+							'foreignKey'    => 'node_id',
+	        			)
+	        		)
+	        	),
+	        	false
+	    	);
         }
 
         /**
@@ -44,6 +56,7 @@ class EventBehavior extends ModelBehavior {
          * @return array
          */
          public function  afterFind(&$model, $results, $primary) {
+
                 parent::afterFind($model, $results, $primary);
 
                 if ($model->type != 'event') {
@@ -72,34 +85,33 @@ class EventBehavior extends ModelBehavior {
          * @return array
          */
         private function _getEvents(&$model, $node_id) {
+            if (!is_object($this->Event)) {
+                    $this->Event = ClassRegistry::init('Event.Event');
+            }
 
-                if (!is_object($this->Event)) {
-                        $this->Event = ClassRegistry::init('Event.Event');
-                }
 
-                // bind Node model
-                $this->Event->bindModel(array(
-                    'belongsTo' => array('Node')
-                    
-                ));
-                // unbind unnecessary models from Node model
-                $this->Event->Node->unbindModel(array(
-                    'belongsTo' => array('User'),
-                    'hasMany' => array('Comment', 'Meta'),
-                    'hasAndBelongsToMany' => array('Taxonomy')
-                ));
-                
-                $this->Event->Node->recursive = 0;
-                $events = $this->Event->find('first', array(
-                    'conditions' => array('Event.node_id' => $node_id)
-                ));
-                
-                if(count($events)> 0){
-	                return $events['Event'];            
-                } else {
-                	return null;
-                }
-                
+            // unbind unnecessary models from Node model
+            $model->unbindModel(array(
+                'belongsTo' => array('User'),
+                'hasMany' => array('Comment', 'Meta'),
+                'hasAndBelongsToMany' => array('Taxonomy')
+            ));
+            
+            $model->recursive = 0;
+            
+            App::import('Model', 'Event.Event');
+            $eventmodel = new Event();
+
+            $events = $eventmodel->find('first', array(
+                'conditions' => array('Event.node_id' => $node_id)
+            ));
+            
+            if(count($events)> 0){
+                return $events['Event'];            
+            } else {
+            	return null;
+            }
+            
 
         }
 
