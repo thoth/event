@@ -45,6 +45,7 @@ class EventBehavior extends ModelBehavior {
 	        	),
 	        	false
 	    	);
+	    	
         }
 
         /**
