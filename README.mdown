@@ -1,6 +1,6 @@
 # Croogo: Event Plugin
 
-**Event** is a free, open source, resume builder that sits on top of the Croogo content management system for PHP, released under [MIT License].
+**Event** is a free, open source, event manager that sits on top of the Croogo content management system for PHP, released under [MIT License].
 
 It is powered by [CakePHP](http://cakephp.org) MVC framework.
 
