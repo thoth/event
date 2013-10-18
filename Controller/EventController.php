@@ -36,18 +36,14 @@ class EventController extends EventAppController {
        	
     }
     
-    public function admin_index() {
-    	$this->layout = 'admin';
-        $this->set('title_for_layout', __('Event', true));
+    public function index(){
+	    
     }
-
-    public function index() {
-        $this->set('title_for_layout', __('Event', true));
-        $this->set('exampleVariable', 'value here');
-    }
-
+    
     public function calendar(){
     	Configure::write('debug', 0);
+		$this->autoLayout = false;
+
 		$events = $this->Event->find('all', array('conditions'=>array('Node.status'=>1)));
 		$json = array();
 		foreach($events as $event){
@@ -59,7 +55,36 @@ class EventController extends EventAppController {
 					'url'=>'/'.$event['Node']['type'].'/'.$event['Node']['slug']
 				);
 		}    	
-		$this->autoLayout = false;
+		
+		if(strtolower(Configure::read('Event.use_hold_my_ticket')) == 'yes'){
+			$this->loadModel('Event.HoldMyTicket');
+			$events = $this->HoldMyTicket->getEvents();
+		Configure::write('debug', 2);		
+	
+			if(!empty($events)){
+				foreach($events as $event) {
+				
+					$allday = (strtotime($event->end) - strtotime($event->start) > 86400);
+					if($allday) { 
+						$end = $event->start;
+					} else { 
+						$end = $event->end;
+					}
+					$json[] = array(
+							'id' => $event->id, 
+							'title'=>$event->title, 
+							'start'=>$event->start,
+							'end' => $end,
+							'allDay' => $allday,
+							'url' => '/events/view/'.$event->id,
+							'details' => $event->description
+					);
+				}
+			} else {
+				$data = array();
+			}			
+		}
+		
 		$this->set('json', json_encode($json));
     }
     

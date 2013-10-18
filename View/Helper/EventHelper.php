@@ -27,7 +27,7 @@ class EventHelper extends AppHelper {
  *
  * @return void
  */
-    public function beforeRender() {
+    public function beforeRender($viewFile) {
     }
 /**
  * After render callback. Called after the view file is rendered
@@ -35,21 +35,21 @@ class EventHelper extends AppHelper {
  *
  * @return void
  */
-    public function afterRender() {
+    public function afterRender($viewFile) {
     }
 /**
  * Before layout callback. Called before the layout is rendered.
  *
  * @return void
  */
-    public function beforeLayout() {
+    public function beforeLayout($viewFile) {
     }
 /**
  * After layout callback. Called after the layout has rendered.
  *
  * @return void
  */
-    public function afterLayout() {
+    public function afterLayout($viewFile) {
     }
 /**
  * Called after LayoutHelper::setNode()

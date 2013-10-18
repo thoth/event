@@ -27,7 +27,7 @@ class EventBehavior extends ModelBehavior {
      * @param array  $config
      * @return void
      */
-    public function setup(&$model, $config = array()) {
+    public function setup(Model $model, $config = Array()) {
         if (is_string($config)) {
                 $config = array($config);
         }
@@ -56,7 +56,7 @@ class EventBehavior extends ModelBehavior {
      * @param boolean $primary
      * @return array
      */
-     public function  afterFind(&$model, $results, $primary) {
+     public function  afterFind(Model $model, $results, $primary = false) {
 
             parent::afterFind($model, $results, $primary);
 

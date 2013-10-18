@@ -18,7 +18,7 @@ class EventComponent extends Component {
  * @param object $controller Controller with components to startup
  * @return void
  */
-    public function startup(&$controller, $settings = array()){
+    public function startup(Controller $controller, $settings = array()){
         
         //hook in the has many model
     	
@@ -35,7 +35,7 @@ class EventComponent extends Component {
  * @param object $controller Controller with components to beforeRender
  * @return void
  */
-    public function beforeRender(&$controller) {
+    public function beforeRender(Controller $controller) {
         // Admin menu: admin_menu element of Example plugin will be shown in admin panel's navigation
         Configure::write('Admin.menus.event', 1);
 

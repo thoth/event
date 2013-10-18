@@ -11,8 +11,6 @@
  */
 class EventActivation{
 
-	public $version = '2.0';
-
 /**
  * onActivate will be called if this returns true
  *
@@ -34,47 +32,35 @@ class EventActivation{
         $controller->Croogo->addAco('Event/index', array('registered', 'public')); // ExampleController::index()
         $controller->Croogo->addAco('Event/calendar', array('registered', 'public')); // ExampleController::index()
         
-		$current_version  = Configure::read('Event.version');
-		if($this->version != $current_version){
-			switch($this->version){
-				case '1.0':
-				default:
-			        // Add a table to the DB
-			        App::import('Core', 'File');
-			        App::import('Model', 'CakeSchema', false);
-					App::import('Model', 'ConnectionManager');
-			
-					$db = ConnectionManager::getDataSource('default');
-					if(!$db->isConnected()) {
-							$this->Session->setFlash(__('Could not connect to database.', true));
-						} else {
-							CakePlugin::load('Event');
-							$schema =& new CakeSchema(array('plugin'=>'Event', 'name'=>'Event'));
-							$schema = $schema->load();
-							foreach($schema->tables as $table => $fields) {
-								$create = $db->createSchema($schema, $table);
-								$db->execute($create);
-							} 
-					}      
-			        
-			        // Main menu: add an Event link
-			        $mainMenu = $controller->Link->Menu->findByAlias('main');
-			        $controller->Link->Behaviors->attach('Tree', array(
-			            'scope' => array(
-			                'Link.menu_id' => $mainMenu['Menu']['id'],
-			            ),
-			        ));
-			        $controller->Link->save(array(
-			            'menu_id' => $mainMenu['Menu']['id'],
-			            'title' => 'Events',
-			            'link' => 'plugin:event/controller:event/action:index',
-			            'status' => 1,
-			        ));
-				break;
-	        }
-			$controller->Setting->write('Event.version', $this->version, array('editable' => 0, 'title' => 'Version'));
+		CakePlugin::load('Event');
+		App::import('Model', 'CakeSchema');
+		App::import('Model', 'ConnectionManager');
+		include_once(APP.'Plugin'.DS.'Event'.DS.'Config'.DS.'Schema'.DS.'schema.php');
+		$db = ConnectionManager::getDataSource('default');
+
+		//Get all available tables
+		$tables = $db->listSources();
+
+		$CakeSchema = new CakeSchema();
+		$EventSchema = new EventSchema();
+
+		foreach ($EventSchema->tables as $table => $config) {
+			if (!in_array($table, $tables)) {
+				$db->execute($db->createSchema($EventSchema, $table));
+			}
 		}
-     }
+
+		//Ignore the cache since the tables wont be inside the cache at this point
+		//$db->cacheSources = false;
+		@unlink(TMP . 'cache' . DS . 'models/cake_model_' . ConnectionManager::getSourceName($db). '_' . $db->config["database"] . '_list');
+		$db->listSources();
+
+
+		$controller->Setting->write('Event.use_hold_my_ticket','yes',array('description' => 'Use Hold My Tickets','editable' => 1));
+        $controller->Setting->write('Event.hold_my_ticket_api_key','',array('description' => 'Hold My Tickets API Key','editable' => 1));
+        
+		
+	}
 /**
  * onDeactivate will be called if this returns true
  *
@@ -93,22 +79,6 @@ class EventActivation{
     public function onDeactivation(&$controller) {
         // ACL: remove ACOs with permissions
         $controller->Croogo->removeAco('Event'); // ExampleController ACO and it's actions will be removed
-
-        // Main menu: delete Event link
-        $link = $controller->Link->find('first', array(
-            'conditions' => array(
-                'Menu.alias' => 'main',
-                'Link.link' => 'plugin:event/controller:event/action:index',
-            ),
-        ));
-        $controller->Link->Behaviors->attach('Tree', array(
-            'scope' => array(
-                'Link.menu_id' => $link['Link']['menu_id'],
-            ),
-        ));
-        if (isset($link['Link']['id'])) {
-            $controller->Link->delete($link['Link']['id']);
-        }
 
     }
 

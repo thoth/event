@@ -10,7 +10,8 @@
  *
  * This plugin's Example behavior will be attached whenever Node model is loaded.
  */
-    Croogo::hookBehavior('Node', 'Event.Event', array());
+    Croogo::hookBehavior('Node', 'Event.Event', array()); 
+    
 /**
  * Component
  *
@@ -46,4 +47,15 @@
  */
     Croogo::hookAdminTab('Nodes/admin_add', 'Event', 'event.admin_tab_node_add');
     Croogo::hookAdminTab('Nodes/admin_edit', 'Event', 'event.admin_tab_node');
-?>
+
+
+	CroogoNav::add('settings.children.event', array(
+		'title' => 'Events',
+		'url' => array(
+			'admin' => true,
+			'plugin' => 'settings',
+			'controller' => 'settings',
+			'action' => 'prefix',
+			'Event',
+		),
+	));
