@@ -11,14 +11,14 @@
  * @license  http://www.opensource.org/licenses/mit-license.php The MIT License
  * @link     http://www.tigerclawtech.com/portfolio/croogo-event-plugin
  */
-class EventController extends EventAppController {
+class EventsController extends EventAppController {
 /**
  * Controller name
  *
  * @var string
  * @access public
  */
-    public $name = 'Event';
+    public $name = 'Events';
 /**
  * Models used by the Controller
  *
@@ -39,6 +39,16 @@ class EventController extends EventAppController {
     public function index(){
 	    
     }
+
+	public function hmtview($id = -1){
+
+		$event = array();
+		if(strtolower(Configure::read('Event.use_hold_my_ticket')) == 'yes'){
+			$this->loadModel('Event.HoldMyTicket');
+			$event = array('Event'=>get_object_vars($this->HoldMyTicket->getEvent($id)));
+			$this->set("event", $event);
+		}
+	}
     
     public function calendar(){
     	Configure::write('debug', 0);
@@ -59,7 +69,7 @@ class EventController extends EventAppController {
 		if(strtolower(Configure::read('Event.use_hold_my_ticket')) == 'yes'){
 			$this->loadModel('Event.HoldMyTicket');
 			$events = $this->HoldMyTicket->getEvents();
-		Configure::write('debug', 2);		
+			//Configure::write('debug', 2);		
 	
 			if(!empty($events)){
 				foreach($events as $event) {
@@ -76,7 +86,7 @@ class EventController extends EventAppController {
 							'start'=>$event->start,
 							'end' => $end,
 							'allDay' => $allday,
-							'url' => '/events/view/'.$event->id,
+							'url' => '/events/hmtview/'.$event->id,
 							'details' => $event->description
 					);
 				}

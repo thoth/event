@@ -79,7 +79,7 @@ class EventHelper extends AppHelper {
  */
     public function beforeNodeBody() {
 		//debug($this->Layout->node['Event']);     
-    	if(count($this->Layout->node['Event']) > 0 && $this->Layout->node['Event']['start_date'] != '0000-00-00 00:00:00' && $this->Layout->node['Event']['end_date'] != '0000-00-00 00:00:00'){
+    	if(count($this->Layout->node['Event']) > 0 && !empty($this->Layout->node['Event']['start_date']) && !empty($this->Layout->node['Event']['end_date'])){
 	        return '<div class="event-data">
 	        	From: '.date(Configure::read('Reading.date_time_format'), strtotime($this->Layout->node['Event']['start_date'])).'<br />
 	        	To: '.date(Configure::read('Reading.date_time_format'), strtotime($this->Layout->node['Event']['end_date'])).'

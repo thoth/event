@@ -12,7 +12,7 @@
 <script>
 	$(document).ready(function() {
  		$('#calendar').fullCalendar({
- 			events: "<?php echo Router::url(array('plugin'=>'event', 'controller'=>'event', 'action'=>'calendar', '1.json'), true); ?>"
+ 			events: "<?php echo Router::url(array('plugin'=>'event', 'controller'=>'events', 'action'=>'calendar', '1.json'), true); ?>"
 	 	});
  	});
  </script>
