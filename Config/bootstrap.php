@@ -10,8 +10,9 @@
  *
  * This plugin's Example behavior will be attached whenever Node model is loaded.
  */
-    Croogo::hookBehavior('Node', 'Event.Event', array()); 
-    
+    //Croogo::hookBehavior('Node', 'Event.Event', array());
+	Croogo::hookModelProperty('Node', 'hasOne', array('Event'));
+
 /**
  * Component
  *

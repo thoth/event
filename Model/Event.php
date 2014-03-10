@@ -6,4 +6,3 @@ class Event extends EventAppModel{
 		'Node'
 	);
 }
-?>

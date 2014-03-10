@@ -1,6 +1,6 @@
 <?php 
-	$this->Html->css('/event/css/fullcalendar', null, array('inline'=>false));
-	$this->Html->script(array('/event/js/fullcalendar.min'), array('inline'=>false));
+	$this->Html->css('//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.css', null, array('inline'=>false));
+	$this->Html->script(array('//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.min.js'), array('inline'=>false));
 ?>
 <div class="content">
 	<h3>Calendar</h3>
