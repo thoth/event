@@ -4,13 +4,13 @@
  *
  * example_routes.php will be loaded in main app/config/routes.php file.
  */
-    Croogo::hookRoutes('Event');
+	Croogo::hookRoutes('Event');
 /**
  * Behavior
  *
  * This plugin's Example behavior will be attached whenever Node model is loaded.
  */
-    //Croogo::hookBehavior('Node', 'Event.Event', array());
+	Croogo::hookBehavior('Node', 'Event.Event', array());
 	Croogo::hookModelProperty('Node', 'hasOne', array('Event'));
 
 /**
@@ -18,13 +18,13 @@
  *
  * This plugin's Example component will be loaded in ALL controllers.
  */
-    Croogo::hookComponent('Nodes', 'Event.Event');
+	Croogo::hookComponent('Nodes', 'Event.Event');
 /**
  * Helper
  *
  * This plugin's Example helper will be loaded via NodesController.
  */
-    Croogo::hookHelper('Nodes', 'Event.Event');
+	Croogo::hookHelper('Nodes', 'Event.Event');
 /**
  * Admin menu (navigation)
  *
@@ -46,8 +46,8 @@
  *
  * Useful for adding form extra form fields if necessary.
  */
-    Croogo::hookAdminTab('Nodes/admin_add', 'Event', 'event.admin_tab_node_add');
-    Croogo::hookAdminTab('Nodes/admin_edit', 'Event', 'event.admin_tab_node');
+	Croogo::hookAdminTab('Nodes/admin_add', 'Event', 'event.admin_tab_node_add');
+	Croogo::hookAdminTab('Nodes/admin_edit', 'Event', 'event.admin_tab_node');
 
 
 	CroogoNav::add('settings.children.event', array(

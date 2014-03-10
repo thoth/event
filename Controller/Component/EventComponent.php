@@ -7,9 +7,9 @@
  * @category Component
  * @package  Croogo
  * @version  1.0
- * @author   Thomas Rader <thomas.rader@tigerclawtech.com>
+ * @author   Thomas Rader <tom.rader@claritymediasolutions.com>
  * @license  http://www.opensource.org/licenses/mit-license.php The MIT License
- * @link     http://www.tigerclawtech.com/portfolio/croogo-event-plugin
+ * @link     http://www.claritymediasolutions.com/portfolio/croogo-event-plugin
  */
 class EventComponent extends Component {
 /**
@@ -19,14 +19,14 @@ class EventComponent extends Component {
  * @return void
  */
     public function startup(Controller $controller, $settings = array()){
-        
+
         //hook in the has many model
-    	
+
     	$controller->Node->bindModel(
         	array('hasOne'=>array('Event')),
         	false
        	);
-        
+
     }
 /**
  * Called after the Controller::beforeRender(), after the view class is loaded, and before the
@@ -42,11 +42,11 @@ class EventComponent extends Component {
         if($controller->name == 'Nodes'){
         	Configure::write('Admin.rowActions.Event', 'plugin:event/controller:event/action:index/:id');
         }
-        
+
         // Bind the model to Nodes
 
     }
 
-    
+
 }
 ?>

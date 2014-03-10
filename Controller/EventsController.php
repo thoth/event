@@ -7,9 +7,9 @@
  * @category Controller
  * @package  Croogo
  * @version  1.0
- * @author   Thomas Rader <thomas.rader@tigerclawtech.com>
+ * @author   Thomas Rader <tom.rader@claritymediasolutions.com>
  * @license  http://www.opensource.org/licenses/mit-license.php The MIT License
- * @link     http://www.tigerclawtech.com/portfolio/croogo-event-plugin
+ * @link     http://www.claritymediasolutions.com/portfolio/croogo-event-plugin
  */
 class EventsController extends EventAppController {
 /**
@@ -25,19 +25,19 @@ class EventsController extends EventAppController {
  * @var array
  * @access public
  */
-        
+
     public function beforeFilter(){
     	parent::beforeFilter();
-    	
+
     	$this->Event->bindModel(
         	array('belongsTo'=>array('Node')),
         	false
        	);
-       	
+
     }
-    
+
     public function index(){
-	    
+
     }
 
 	public function hmtview($id = -1){
@@ -49,7 +49,7 @@ class EventsController extends EventAppController {
 			$this->set("event", $event);
 		}
 	}
-    
+
     public function calendar(){
     	Configure::write('debug', 0);
 		$this->autoLayout = false;
@@ -64,25 +64,25 @@ class EventsController extends EventAppController {
 					'end'=>$event['Event']['end_date'],
 					'url'=>'/'.$event['Node']['type'].'/'.$event['Node']['slug']
 				);
-		}    	
-		
+		}
+
 		if(strtolower(Configure::read('Event.use_hold_my_ticket')) == 'yes'){
 			$this->loadModel('Event.HoldMyTicket');
 			$events = $this->HoldMyTicket->getEvents();
-			//Configure::write('debug', 2);		
-	
+			//Configure::write('debug', 2);
+
 			if(!empty($events)){
 				foreach($events as $event) {
-				
+
 					$allday = (strtotime($event->end) - strtotime($event->start) > 86400);
-					if($allday) { 
+					if($allday) {
 						$end = $event->start;
-					} else { 
+					} else {
 						$end = $event->end;
 					}
 					$json[] = array(
-							'id' => $event->id, 
-							'title'=>$event->title, 
+							'id' => $event->id,
+							'title'=>$event->title,
 							'start'=>$event->start,
 							'end' => $end,
 							'allDay' => $allday,
@@ -92,18 +92,18 @@ class EventsController extends EventAppController {
 				}
 			} else {
 				$data = array();
-			}			
+			}
 		}
-		
+
 		$this->set('json', json_encode($json));
     }
-    
+
     public function upcoming(){
 		$events = $this->Event->find('all', array('conditions'=>array('Node.status'=>1, 'Event.start_date >'=>date('Y-m-d H:i'))));
-		
+
 		$this->autoLayout = false;
 		$this->autoRender = false;
 		return($events);
     }
-    
+
 }

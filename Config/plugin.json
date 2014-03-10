@@ -3,8 +3,8 @@
 	"description": "Event plugin for attaching event data to nodes and providing a calendar view",
 
 	"author": "Thomas Rader",
-	"authorEmail": "thomas.rader@tigerclawtech.com",
-	"authorUrl": "http://tigerclawtech.com",
+	"authorEmail": "tom.rader@claritymediasolutions.com",
+	"authorUrl": "http://claritymediasolutions.com",
 
 	"dependencies": {
 		"plugins": [

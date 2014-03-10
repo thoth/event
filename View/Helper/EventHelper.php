@@ -7,9 +7,9 @@
  * @category Helper
  * @package  Croogo
  * @version  1.0
- * @author   Thomas Rader <thomas.rader@tigerclawtech.com>
+ * @author   Thomas Rader <tom.rader@claritymediasolutions.com>
  * @license  http://www.opensource.org/licenses/mit-license.php The MIT License
- * @link     http://www.tigerclawtech.com/portfolio/croogo-event-plugin
+ * @link     http://www.claritymediasolutions.com/portfolio/croogo-event-plugin
  */
 class EventHelper extends AppHelper {
 /**
@@ -78,8 +78,7 @@ class EventHelper extends AppHelper {
  * @return string
  */
     public function beforeNodeBody() {
-		//debug($this->Layout->node['Event']);     
-    	if(count($this->Layout->node['Event']) > 0 && !empty($this->Layout->node['Event']['start_date']) && !empty($this->Layout->node['Event']['end_date'])){
+		if(count($this->Layout->node['Event']) > 0 && !empty($this->Layout->node['Event']['start_date']) && !empty($this->Layout->node['Event']['end_date'])){
 	        return '<div class="event-data">
 	        	From: '.date(Configure::read('Reading.date_time_format'), strtotime($this->Layout->node['Event']['start_date'])).'<br />
 	        	To: '.date(Configure::read('Reading.date_time_format'), strtotime($this->Layout->node['Event']['end_date'])).'
